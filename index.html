@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html manifest="astrospec.manifest" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="assets/AstroSpecIcon.png" />
+
+    <title>AstroSpec</title>
+    <!-- JCROP -->
+    <link href="assets/Jcrop/css/jquery.Jcrop.css" rel="stylesheet">
+    <link href="assets/Jcrop/css/main.css" rel="stylesheet">
+    <link href="assets/Jcrop/css/demo.css" rel="stylesheet">
+    <!-- JQUERY -->
+    <link rel="stylesheet" href="assets/jquery/jquery-ui.min.css">
+    <!-- BOOTSTRAP STYLES -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- MORRIS CHART STYLES -->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />    
+    <!-- CUSTOM STYLES -->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS -->
+    <style>
+      @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Open Sans'), local('OpenSans'), url('assets/fonts/gstatic_opensans.woff') format('woff');
+
+@media (min-width: 979px) {
+    .sidebar-nav-fixed {
+        position:fixed;
+        top:60px;
+        width:23.404%;
+        float:left;
+    }
+      }
+      }
+    </style>
+ <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />-->
+  </head>
+
+
+  <body>
+    <div id="wrapper">
+      <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse sidebar-nav-fixed">
+          <ul class="nav" id="main-menu" data-spy="affix">
+	    <li class="text-center">
+	      <a href="index.html"><h1>AstroSpec</h1></a>
+	    </li>
+	    <!--
+	    <li class="text-center">
+	      <img src="assets/depticon_large.jpg" class="user-image img-responsive img-thumbnail"/>
+	    </li>
+	    -->
+            <li>
+              <a class="active-menu"  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+            </li>
+	    <li>
+              <a  href="images.html"><i class="fa fa-picture-o fa-3x"></i> Images</a>
+            </li>
+	  </ul>
+        </div>
+      </nav>  
+      <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+        <div id="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+	      <div class="well well-sm">
+		<h1>AST 1001: AstroSpec</h1>
+		<p>Compute one-dimensional cut across images and display spectrum.</p>
+	      </div> <!-- /. WELL -->
+            </div> <!-- /. COL -->
+          </div> <!-- /. ROW  -->
+          <hr />
+
+	  <!-- FIRST ROW OF PANELS -->
+          <div class="row">
+            <div class="col-md-4">
+	      <div class="panel panel-default">
+		<div class="panel-heading">
+		  File Input
+		</div>
+		<div class="panel-body">
+		  <h3>Select image</h3>
+		  <form role="form">
+		    <div class="form-group">
+		      <input type="file" id="file-input" style="display:none"/>
+		      <div class="input-append">
+			<button type="button" class="btn-lg btn-default" onclick="$('input[id=file-input]').click();">
+			  <i class="fa fa-camera"></i> File...
+			</button>
+		      </div>
+		    </div>
+		  </form>
+		  <p class="help-block">Take photo with lens attachment</p>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+
+	    <div class="col-md-8">
+	      <div class="panel panel-default" id="actions">
+		<div class="panel-heading">
+		  Edit Image
+		</div>
+		<div class="panel-body">
+		  <h3>Adjust image</h3>
+		  <form role="form">
+		    <div class="form-group">
+		      <!--<button type="button" class="btn-lg btn-primary" id="edit"><i class="fa fa-edit"></i> Edit</button>-->
+		      <button type="button" class="btn-lg btn-primary" id="crop"><i class="fa fa-magic"></i> Crop</button>
+		      <button type="button" class="btn-lg btn-info" id="spectrum"><i class="fa fa-edit"></i> Spectrum</button>
+		      <button type="button" class="btn-lg btn-danger" id="restore"><i class="fa fa-refresh"></i> Restore</button>
+		    </div>
+		  </form>
+		  <p id="helptext" class="help-block">Select a strip around the target spectrum<br><strong><i class="fa fa-magic"></i> Crop</strong> to crop image to selection<br><strong><i class="fa fa-edit"></i> Spectrum</strong> to compute spectrum across cropped image<br><strong><i class="fa fa-refresh"></i> Restore</strong> to start over</p>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	  </div>  <!-- /. ROW -->
+
+
+	  <!-- SECOND ROW -->
+          <div class="row">
+            <div class="col-md-8">
+	      <div class="panel panel-primary">
+		<div class="panel-heading">
+		  Spectral Image
+		</div>
+		<div class="panel-body">
+		  <img id="SpecImage" src="" class="img-responsive" />
+		  <canvas id="CanInvis" class="hidden"></canvas>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	    
+	    <div class="col-md-4">
+	      <div class="panel panel-warning">
+		<div class="panel-heading">
+		  Lamp Number
+		</div>
+		<div class="panel-body">
+		  <form role="form">
+		    <div class="form-group">
+		      <select id="lampselect" class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			<option>6</option>
+			<option>7</option>
+			<option>Incandescent</option>
+			<option>Flourescent</option>
+			<option>Halogen</option>
+			<option>Sun</option>
+		      </select>
+		    </div> <!-- /. FORM-GROUP -->
+		  </form>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	  </div>  <!-- /. ROW -->
+
+	  <!-- THIRD ROW -->
+          <div class="row">
+            <div class="col-md-8">
+	      <div class="panel panel-info">
+		<div class="panel-heading">
+		  Spectral Line
+		</div>
+		<div class="panel-body">
+		  <div id="morris-line-chart"></div>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	    
+	    <div class="col-md-4">
+	      <div class="panel panel-success">
+		<div class="panel-heading">
+		  Save Spectra
+		</div>
+		<div class="panel-body">
+		  <button type="button" class="btn-lg btn-success" id="save"><i class="fa fa-download"></i> Save</button>
+		  <p id="helptext" class="help-block"><strong><i class="fa fa-download"></i> Save</strong> to write file</p>
+		  <!-- OVERWRITE ALERT -->
+		  <div id="div-file-alert">
+		  </div>
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	  </div>  <!-- /. ROW -->
+
+
+
+          <hr />                
+	</div>
+        <!-- /. PAGE INNER  -->
+	<div id="push"></div>
+	<div id="footer">
+	  <div class="container">
+	    <p class="text-muted credit">AstroSpec by Michael Gordon, 
+	      August 2014  [v2.0]</p>
+	  </div>
+	</div>
+      </div>
+      <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/jquery/external/jquery/jquery.js"></script>
+    <script src="assets/jquery/jquery-ui.min.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- MORRIS CHART SCRIPTS -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+    <!-- JCROP -->
+    <script src="assets/Jcrop/js/jquery.min.js"></script>
+    <script src="assets/Jcrop/js/jquery.Jcrop.js"></script>
+    <!-- CANVG -->
+    <script src="assets/js/rgbcolor.js"></script> 
+    <script src="assets/js/StackBlur.js"></script>
+    <script src="assets/js/canvg.js"></script> 
+    <!-- LOAD THE "STUFF" -->
+    <script src="assets/js/median.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- links stay in fullscreen -->
+    <script>
+   $( document ).ready(function() {
+      var a = document.getElementsByTagName("a");
+          for(var i = 0; i < a.length; i++) {
+		a[i].onclick = function() {
+		      window.location=this.getAttribute("href");
+		      return false;
+		}
+      }
+});
+
+      </script>
+    
+    
+  </body>
+</html>

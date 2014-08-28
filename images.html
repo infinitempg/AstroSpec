@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html manifest="astrospec.manifest" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="apple-touch-icon" href="assets/AstroSpecIcon.png" />
+
+    <title>AstroSpec</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="assets/css/custom.css" rel="stylesheet" />
+    <!-- NANOGALLERY STYLES -->
+    <link href="assets/nanoGALLERY-master/css/nanogallery.css" rel="stylesheet" />
+    <link href="assets/nanoGALLERY-master/css/themes/light/nanogallery_light.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <style>
+      @font-face {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: 400;
+      src: local('Open Sans'), local('OpenSans'), url('assets/fonts/gstatic_opensans.woff') format('woff');
+      }
+      
+      @font-face {
+      font-family: 'nano_icon_font3';
+      src: url('assets/nanoGALLERY-master/css/themes/light/font/nano_icon_font3.eot');
+      src: url('assets/nanoGALLERY-master/css/themes/light/font/nano_icon_font3.eot#iefix') format('embedded-opentype'),
+      url('assets/nanoGALLERY-master/css/themes/light/font/nano_icon_font3.woff') format('woff'),
+      url('assets/nanoGALLERY-master/css/themes/light/font/nano_icon_font3.ttf') format('truetype'),
+      url('assets/nanoGALLERY-master/css/themes/light/font/nano_icon_font3.svg#nano_icon_font3') format('svg');
+      font-weight: normal;
+      font-style: normal;
+
+@media (min-width: 979px) {
+    .sidebar-nav-fixed {
+        position:fixed;
+        top:60px;
+        width:23.404%;
+        float:left;
+    }
+}
+}
+      
+      
+    </style>
+    <!--<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />-->
+  </head>
+  <body>
+    <div id="wrapper">
+      <nav class="navbar-default navbar-side" role="navigation">
+        <div class="sidebar-collapse sidebar-nav-fixed">
+          <ul class="nav" id="main-menu" data-spy="affix">
+	    <li class="text-center">
+	      <a href="index.html"><h1>AstroSpec</h1></a>
+	    </li>
+	    <!--
+	    <li class="text-center">
+	      <img src="assets/depticon_large.jpg" class="user-image img-responsive img-thumbnail"/>
+	    </li>
+	    	      -->
+            <li>
+              <a  href="index.html"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+            </li>
+            <li>
+              <a class="active-menu"   href="images.html"><i class="fa fa-picture-o fa-3x"></i> Images</a>
+            </li>
+	  </ul>
+        </div>
+      </nav>  
+      <!-- /. NAV SIDE  -->
+      <div id="page-wrapper" >
+        <div id="page-inner">
+          <div class="row">
+            <div class="col-md-12">
+	      <div class="well">
+              <h2>Images</h2>
+              <p>Gallery of images from this session.</p>
+	      </div> <!-- /. WELL -->
+	    </div> <!--/. COL -->
+          </div>  <!-- /. ROW  -->
+          <hr />
+
+	  <!-- FIRST ROW of PANELS -->
+          <div class="row">            
+            <div class="col-md-12">
+              <div class="panel panel-primary">
+                <div class="panel-heading">
+                  Gallery
+                </div>        
+                <div class="panel-body"> 
+		  <div id="nanoGallery">
+		  </div>  <!-- /. GALLERY -->
+		</div> <!-- /. PANEL-BODY -->
+              </div> <!-- /. PANEL -->
+            </div> <!-- /. COL -->
+          </div> <!-- /. ROW  -->
+
+	  <!-- SECOND ROW/ REMOVE -->
+	  <div class="row hidden" id="row-clear">
+	    <div class="col-md-8">
+	      <div class="panel panel-danger">
+		<div class="panel-heading">
+		  Clear cache
+		</div>
+		<div class="panel-body">
+		  <button type="button" class="btn-lg btn-danger" id="clear-all"><i class="fa fa-exclamation-triangle"></i> Clear all</button>
+		  <p id="helptext" class="help-block"><strong><i class="fa fa-exclamation-triangle"></i> Clear all</strong> to delete stored imaged.  Overwrite existing images from the <a href="index.html"><strong><i class="fa fa-dashboard"></i> Dashboard</strong></a> </p>
+		  <div id="div-clear-alert"></div>  <!-- CLEAR ALERT -->
+		</div> <!-- /. PANEL-BODY -->
+	      </div> <!-- /. PANEL -->
+	    </div> <!-- /. COL -->
+	  </div> <!-- /. ROW -->
+	</div> <!-- /. PAGE INNER  -->
+	<div id="push"></div>
+	<div id="footer">
+	  <div class="container">
+	    <p class="text-muted credit">AstroSpec by Michael Gordon, 
+	      August 2014  [v2.0]</p>
+	  </div>
+	</div>
+      </div> <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/jquery/external/jquery/jquery.js"></script>
+    <script src="assets/jquery/jquery-ui.min.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+    <!-- NANOGALLERY -->
+    <script src="assets/nanoGALLERY-master/jquery.nanogallery.js"></script>
+    <!-- LOAD THE "STUFF" -->
+    <script src="assets/js/image_main.js"></script>
+    
+    <!-- links stay in fullscreen -->
+    <script>
+   $( document ).ready(function() {
+      var a = document.getElementsByTagName("a");
+          for(var i = 0; i < a.length; i++) {
+		a[i].onclick = function() {
+		      window.location=this.getAttribute("href");
+		      return false;
+		}
+      }
+});
+
+      </script>
+
+  </body>
+</html>
